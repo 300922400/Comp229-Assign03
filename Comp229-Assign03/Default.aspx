@@ -1,42 +1,79 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Comp229_Assign03._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:GridView ID ="StudentList" runat="server" AutoGenerateColumns="False">
+        <Columns>
+            <asp:BoundField DataField="StudentID" HeaderText="StudentID" />
+            <asp:BoundField DataField="FirstMidName" HeaderText="FirstMidName" />
+            <asp:BoundField DataField="LastName" HeaderText="LastName" />
+            <asp:BoundField DataField="EnrollmentDate" HeaderText="EnrollmentDate" />
+            <asp:HyperLinkField DataNavigateUrlFields="StudentID" DataNavigateUrlFormatString="Student.aspx?custid={0}" Text="Details" />
+        </Columns>
+    </asp:GridView>
+    <div id="AddStudent" runat="server">
+         <table>
+             <tr>
+                 <td>StudentID</td>
+                 <td>
+                     <asp:TextBox ID="input_StudentID" runat="server"></asp:TextBox>
+                 </td>
+             </tr>
+              <tr>
+                 <td>FirstMidName</td>
+                 <td>
+                     <asp:TextBox ID="input_FirstMidName" runat="server"></asp:TextBox>
+                 </td>
+             </tr>
+             <tr>
+                 <td>LastName</td>
+                 <td>
+                     <asp:TextBox ID="input_LastName" runat="server"></asp:TextBox>
+                 </td>
+             </tr>
+             <tr>
+                 <td>EnrollmentDate</td>
+                 <td>
+                     <asp:Calendar ID="input_EnrollmentDate" runat="server" OnSelectionChanged="input_EnrollmentDate_SelectionChanged"></asp:Calendar>
+                 </td>
+             </tr>
+             <tr>
+                 <td>Enrolment Date of New Student</td>
+                 <td>
+                     <asp:Label ID="Date_Enroll" runat="server" />
+                 </td>
 
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+             </tr>
+             <tr>
+                 <td></td>
+                 <td>
+                     <asp:Button ID="Input_button" runat="server" Text="ADD" OnClick="Input_button_Click" />
+                 </td>
+             </tr>
+         </table>
     </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
-        </div>
-    </div>
-
+   <%-- 
+    <h1></h1>
+    <asp:DataList ID ="StudentList" runat="server">
+        <ItemTemplate>
+            <table id="studentTable" runat="server">
+                <tr>
+                    <td>Student ID:</td>
+                    <td><strong><a href="viewstudent.aspx?id=<%#Eval("StudentId") %>"><%#Eval("StudentId") %></a></strong></td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td><strong><%#Eval("FirstMidName")%></strong><strong><%#Eval("LastName")%></strong></td>
+                </tr>
+                <tr>
+                    <td>Enrollment Date:</td>
+                    <td><strong><%#Eval("EnrollmentDate") %></strong></td>
+                </tr>
+                
+            </table>
+        </ItemTemplate>
+        <SeparatorTemplate>
+            <hr />
+        </SeparatorTemplate>
+    </asp:DataList>
+    --%>
 </asp:Content>
