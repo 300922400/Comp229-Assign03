@@ -2,7 +2,6 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2> Student Page </h2>
-    <p> 
         <asp:GridView ID="Student_Detail" runat="server" AutoGenerateColumns="False" DataKeyNames="StudentID" DataSourceID="SqlDataSource1">
             <Columns>
                 <asp:BoundField DataField="StudentID" HeaderText="StudentID" InsertVisible="False" ReadOnly="True" SortExpression="StudentID" />
@@ -17,13 +16,17 @@
                 <asp:QueryStringParameter Name="StudentID" QueryStringField="custid" Type="Int32" />
             </SelectParameters>
         </asp:SqlDataSource>
-         <asp:GridView ID="Student_Info" runat="server" AutoGenerateColumns="False" DataKeyNames="Student_Info" DataSourceID="Student_Info">
+        
+    <asp:GridView ID="Student_Info" runat="server" AutoGenerateColumns="False" DataKeyNames="Student_Infor" DataSourceID="Student_Info">
             <Columns>
-                <asp:BoundField DataField="Grade" HeaderText="Grade" SortExpression="Grade" />
-                <asp:BoundField DataField="Course" HeaderText="Course" SortExpression="Course" />
-                <asp:BoundField DataField="Credits" HeaderText="Credits" SortExpression="Credits" />
+                <asp:BoundField DataField="Grade" HeaderText="Grade" InsertVisible="False" ReadOnly="True" SortExpression="Grade" />
             </Columns>
         </asp:GridView>
-    </p>
-    
+      <asp:GridView ID="Course" runat="server" AutoGenerateColumns="False" DataKeyNames="Student_Infor" DataSourceID="Student_Course">
+            <Columns>
+                <asp:BoundField DataField="Title" HeaderText="Title" InsertVisible="False" ReadOnly="True" SortExpression="Title" />
+                <asp:BoundField DataField="Credit" HeaderText="Credit" InsertVisible="False" ReadOnly="True" SortExpression="Credit" />
+            </Columns>
+        </asp:GridView>
+
 </asp:Content>

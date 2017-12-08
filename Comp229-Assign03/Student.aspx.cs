@@ -23,7 +23,7 @@ namespace Comp229_Assign03
             // Initialize connection
             conn = new SqlConnection(connectionString);
             //create command
-            comm_enrollment = new SqlCommand("SELECT EnrollmentID,Grade FROM Enrollments JOIN Students USING (StudentID) WHERE ([StudentID] = @StudentID)", conn);
+            comm_enrollment = new SqlCommand("SELECT Grade FROM Enrollments JOIN Students on Enrollments.StudentID = Students.StudentID WHERE ([StudentID] = @StudentID)", conn);
             comm_course = new SqlCommand("SELECT Title,Credits FROM Enrollments JOIN Courses USING (CourseID)", conn);
             try
             {
