@@ -18,7 +18,7 @@
              <tr>
                  <td>Enrolment Date </td>
                  <td>
-                     <asp:TextBox ID="Update_date" runat="server" ></asp:TextBox>
+                     <asp:TextBox ID="Update_date" runat="server" TextMode="Date"></asp:TextBox>
                  </td>
 
              </tr>
@@ -32,7 +32,14 @@
            <tr>
                  <td>Course </td>
                  <td>
-                     <asp:TextBox ID="Update_Course" runat="server" ></asp:TextBox>
+                     <asp:DropDownList ID="Course_List" runat="server">
+                         <asp:ListItem>4004	Trigonometry</asp:ListItem>
+                         <asp:ListItem>4005	Literature</asp:ListItem>
+                         <asp:ListItem>4002	Macroeconomics</asp:ListItem>
+                         <asp:ListItem>4003	Calculus</asp:ListItem>
+                         <asp:ListItem>4006	Chemistry</asp:ListItem>
+                         <asp:ListItem>4007	Microeconomics</asp:ListItem>
+                     </asp:DropDownList>
                  </td>
 
              </tr>

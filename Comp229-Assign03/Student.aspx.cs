@@ -23,7 +23,7 @@ namespace Comp229_Assign03
             // Initialize connection
             conn = new SqlConnection(connectionString);
             //create command
-            comm_enrollment = new SqlCommand("SELECT Enrollments.Grade, Courses.Title, Courses.Credits  FROM Enrollments JOIN Courses on Enrollments.CourseID = Courses.CourseID WHERE Enrollments.StudentID = @StudentID", conn);
+            comm_enrollment = new SqlCommand("SELECT Courses.CourseID,Courses.Title, Enrollments.Grade  FROM Enrollments JOIN Courses on Enrollments.CourseID = Courses.CourseID WHERE Enrollments.StudentID = @StudentID", conn);
             // add parameter into command
             comm_enrollment.Parameters.Add("@StudentID", System.Data.SqlDbType.Int);
             comm_enrollment.Parameters["@StudentID"].Value = StudentID;
@@ -35,6 +35,7 @@ namespace Comp229_Assign03
                 //execute the command
                 reader = comm_enrollment.ExecuteReader();
                 // bind the reader to DataList
+                Student_Info.DataSourceID = null;
                 Student_Info.DataSource = reader;
                 Student_Info.DataBind();
                 //Close the reader
@@ -49,5 +50,32 @@ namespace Comp229_Assign03
             }
         }
 
+        protected void Button_Update_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Update.aspx");
+        }
+
+        protected void Button_Delete_Click(object sender, EventArgs e)
+        {
+            int StudentID = Convert.ToInt32(Request.QueryString["StudentID"]);
+            SqlConnection conn;
+            SqlCommand comm_delete;
+            SqlDataReader reader;
+            // read the connection string from Web.config
+            string connectionString = ConfigurationManager.ConnectionStrings["Students"].ConnectionString;
+
+            // Initialize connection
+            conn = new SqlConnection(connectionString);
+            comm_delete = new SqlCommand("DELETE FROM Students " +
+                 "WHERE StudentID=@StudentID", conn);
+            comm_delete.Parameters.Add("@StudentID", System.Data.SqlDbType.Int);
+            comm_delete.Parameters["@StudentID"].Value = StudentID;
+            conn.Open();
+            //execute the command
+            //reader = comm_delete.ExecuteReader();
+            comm_delete.ExecuteNonQuery();
+            conn.Close();
+            Response.Redirect("Default.aspx");
+        }
     }
 }

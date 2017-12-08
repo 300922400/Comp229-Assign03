@@ -16,7 +16,23 @@
                 <asp:QueryStringParameter Name="StudentID" QueryStringField="studentid" Type="Int32" />
             </SelectParameters>
         </asp:SqlDataSource>
-        
-    <asp:GridView ID="Student_Info" runat="server">
-        </asp:GridView>
+      <asp:DetailsView  runat="server" ID="Student_Info" AutoGenerateRows="False">
+          <Fields>
+              <asp:BoundField DataField="CourseID" HeaderText="CourseID" ReadOnly="True" />
+              <asp:BoundField DataField="Title" HeaderText="Course Title" ReadOnly="True" />
+              <asp:BoundField DataField="Grade" HeaderText="Grade" ReadOnly="True" />
+          </Fields>
+      </asp:DetailsView>  
+    
+    <table runat="server">
+        <tr>
+            <td>
+                <asp:Button ID="Button_Update" runat="server" Text="UPDATE" OnClick="Button_Update_Click" />
+            </td>
+            <td>
+                <asp:Button ID="Button_Delete" runat="server" Text="DELETE" OnClick="Button_Delete_Click" />
+            </td>
+        </tr>
+    </table>
+    
 </asp:Content>

@@ -33,7 +33,7 @@ namespace Comp229_Assign03
             try
             {
                 conn.Open();
-                reader = comm.ExecuteReader();
+                reader = comm.ExecuteReader();//invalid studentID,firstmidname,lastname
                 if(reader.Read())
                 {
                     update_FirstMidName.Text = reader["FirstMidName"].ToString();
