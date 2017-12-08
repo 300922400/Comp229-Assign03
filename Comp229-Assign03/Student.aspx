@@ -13,20 +13,10 @@
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Students %>" SelectCommand="SELECT * FROM [Students] WHERE ([StudentID] = @StudentID)">
             <SelectParameters>
-                <asp:QueryStringParameter Name="StudentID" QueryStringField="custid" Type="Int32" />
+                <asp:QueryStringParameter Name="StudentID" QueryStringField="studentid" Type="Int32" />
             </SelectParameters>
         </asp:SqlDataSource>
         
-    <asp:GridView ID="Student_Info" runat="server" AutoGenerateColumns="False" DataKeyNames="Student_Infor" DataSourceID="Student_Info">
-            <Columns>
-                <asp:BoundField DataField="Grade" HeaderText="Grade" InsertVisible="False" ReadOnly="True" SortExpression="Grade" />
-            </Columns>
+    <asp:GridView ID="Student_Info" runat="server">
         </asp:GridView>
-      <asp:GridView ID="Course" runat="server" AutoGenerateColumns="False" DataKeyNames="Student_Infor" DataSourceID="Student_Course">
-            <Columns>
-                <asp:BoundField DataField="Title" HeaderText="Title" InsertVisible="False" ReadOnly="True" SortExpression="Title" />
-                <asp:BoundField DataField="Credit" HeaderText="Credit" InsertVisible="False" ReadOnly="True" SortExpression="Credit" />
-            </Columns>
-        </asp:GridView>
-
 </asp:Content>

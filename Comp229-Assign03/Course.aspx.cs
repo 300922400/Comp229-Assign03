@@ -9,13 +9,13 @@ using System.Web.UI.WebControls;
 
 namespace Comp229_Assign03
 {
-    public partial class Student : Page
+    public partial class Contact : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            int StudentID = Convert.ToInt32(Request.QueryString["StudentID"]);
+            int courseID = Convert.ToInt32(Request.QueryString["CourseID"]);
             SqlConnection conn;
-            SqlCommand comm_enrollment;
+            SqlCommand comm_show;
             SqlDataReader reader;
             // read the connection string from Web.config
             string connectionString = ConfigurationManager.ConnectionStrings["Students"].ConnectionString;
@@ -23,23 +23,21 @@ namespace Comp229_Assign03
             // Initialize connection
             conn = new SqlConnection(connectionString);
             //create command
-            comm_enrollment = new SqlCommand("SELECT Enrollments.Grade, Courses.Title, Courses.Credits  FROM Enrollments JOIN Courses on Enrollments.CourseID = Courses.CourseID WHERE Enrollments.StudentID = @StudentID", conn);
+            comm_show = new SqlCommand("SELECT Students.StudentID,Students.FirstMidName,Students.LastName FROM Enrollments JOIN Students on Enrollments.StudentID = Student.StudentID WHERE Enrollments.CourseID = @CourseID", conn);
             // add parameter into command
-            comm_enrollment.Parameters.Add("@StudentID", System.Data.SqlDbType.Int);
-            comm_enrollment.Parameters["@StudentID"].Value = StudentID;
-   
+            comm_show.Parameters.Add("@CourseID", System.Data.SqlDbType.Int);
+            comm_show.Parameters["@CourseID"].Value = courseID;
             try
             {
                 //open connection
                 conn.Open();
                 //execute the command
-                reader = comm_enrollment.ExecuteReader();
+                reader = comm_show.ExecuteReader();
                 // bind the reader to DataList
-                Student_Info.DataSource = reader;
-                Student_Info.DataBind();
+                Display_Student.DataSource = reader;
+                Display_Student.DataBind();
                 //Close the reader
                 reader.Close();
-
 
             }
             finally
@@ -48,6 +46,5 @@ namespace Comp229_Assign03
                 conn.Close();
             }
         }
-
     }
 }

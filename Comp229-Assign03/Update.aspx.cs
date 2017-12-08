@@ -18,6 +18,7 @@ namespace Comp229_Assign03
 
         protected void Update_button_Click(object sender, EventArgs e)
         {
+            int StudentID = Convert.ToInt32(Request.QueryString["StudentID"]);
             SqlConnection conn;
             SqlCommand comm;
             SqlDataReader reader;
@@ -26,8 +27,9 @@ namespace Comp229_Assign03
             // Initialize connection
             conn = new SqlConnection(connectionString);
             comm = new SqlCommand("Select FirstMidName,LastName,EnrollmentDate WHERE StudentID = @StudentID", conn);
-            comm.Parameters.Add("@FirstMidName", System.Data.SqlDbType.VarChar);
-            //comm.Parameters ["@StudentID"].Value =  phan custid
+            // pass parameter into command
+            comm.Parameters.Add("@StudentID", System.Data.SqlDbType.Int);
+            comm.Parameters["@StudentID"].Value = StudentID;
             try
             {
                 conn.Open();

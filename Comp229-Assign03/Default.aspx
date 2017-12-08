@@ -7,7 +7,7 @@
             <asp:BoundField DataField="FirstMidName" HeaderText="FirstMidName" />
             <asp:BoundField DataField="LastName" HeaderText="LastName" />
             <asp:BoundField DataField="EnrollmentDate" HeaderText="EnrollmentDate" />
-            <asp:HyperLinkField DataNavigateUrlFields="StudentID" DataNavigateUrlFormatString="Student.aspx?custid={0}" Text="Details" />
+            <asp:HyperLinkField DataNavigateUrlFields="StudentID" DataNavigateUrlFormatString="Student.aspx?studentid={0}" Text="Details" />
         </Columns>
     </asp:GridView>
     <div id="AddStudent" runat="server">
