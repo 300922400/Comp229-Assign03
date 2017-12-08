@@ -19,16 +19,16 @@ namespace Comp229_Assign03 {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Student_Detail;
+        protected global::System.Web.UI.WebControls.DetailsView Student_Detail;
         
         /// <summary>
-        /// SqlDataSource1 control.
+        /// StudentDataSource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.SqlDataSource StudentDataSource;
         
         /// <summary>
         /// Student_Info control.

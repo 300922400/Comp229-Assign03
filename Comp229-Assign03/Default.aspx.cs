@@ -67,19 +67,14 @@ namespace Comp229_Assign03
                 // Initialize connection
                 conn = new SqlConnection(connectionString);
                 //create command
-                comm_add = new SqlCommand("insert into Students(StudentID,LastName,FirstMidName,EnrollmentDate) values (@StudentID,@LastName,@FirstMidName,@EnrollmentDate)", conn);
-                //comm_add.Parameters.AddWithValue("@StudentID", input_StudentID.Text);
-                //comm_add.Parameters.AddWithValue("@LastName", input_LastName.Text);
-                //comm_add.Parameters.AddWithValue("@FirstMidName", input_FirstMidName.Text);
-                //comm_add.Parameters.AddWithValue("@EnrollmentDate", input_EnrollmentDate.SelectedDate);
-                comm_add.Parameters.Add("@StudentID", System.Data.SqlDbType.Int);
-                comm_add.Parameters["@StudentID"].Value = input_StudentID.Text;
+                comm_add = new SqlCommand("insert into Students(LastName,FirstMidName,EnrollmentDate) values (@LastName,@FirstMidName,@EnrollmentDate)", conn);
+       
                 comm_add.Parameters.Add("@LastName", System.Data.SqlDbType.VarChar);
                 comm_add.Parameters["@LastName"].Value = input_LastName.Text;
                 comm_add.Parameters.Add("@FirstMidName", System.Data.SqlDbType.VarChar);
-                comm_add.Parameters["@FirstMidName"].Value = input_StudentID.Text;
-                comm_add.Parameters.Add("@EnrollmenetDate", System.Data.SqlDbType.Date);
-                comm_add.Parameters["@EnrollmentDate"].Value =null;
+                comm_add.Parameters["@FirstMidName"].Value = input_FirstMidName.Text;
+                comm_add.Parameters.Add("@EnrollmentDate", System.Data.SqlDbType.Date);
+                comm_add.Parameters["@EnrollmentDate"].Value =Convert.ToDateTime(input_EnrollmentDate.Text);
                 try
                 {
                     conn.Open();
@@ -89,19 +84,12 @@ namespace Comp229_Assign03
                 {
                     conn.Close();
                 }
+                Response.Redirect(Request.Path);
                 
             }
            
-
-
         }
-
-        protected void input_EnrollmentDate_SelectionChanged(object sender, EventArgs e)
-        {
-            Date_Enroll.Text=input_EnrollmentDate.SelectedDate.ToShortDateString();
-        }
-
-      
+     
     }
 }
       

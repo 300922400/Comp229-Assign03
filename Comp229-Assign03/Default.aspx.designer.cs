@@ -31,15 +31,6 @@ namespace Comp229_Assign03 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddStudent;
         
         /// <summary>
-        /// input_StudentID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox input_StudentID;
-        
-        /// <summary>
         /// input_FirstMidName control.
         /// </summary>
         /// <remarks>
@@ -64,7 +55,7 @@ namespace Comp229_Assign03 {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar input_EnrollmentDate;
+        protected global::System.Web.UI.WebControls.TextBox input_EnrollmentDate;
         
         /// <summary>
         /// Date_Enroll control.

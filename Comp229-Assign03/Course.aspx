@@ -2,9 +2,7 @@
 <%--display all student enroll course
 add or remove students from course--%>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:GridView ID="Display_Student" runat="server" AutoGenerateColumns="false">
-        <Columns>
-        </Columns>
+    <asp:DetailsView id="CourseInfo" runat="server"></asp:DetailsView>
+    <asp:GridView ID="StudentList" runat="server" >
     </asp:GridView>
-
 </asp:Content>

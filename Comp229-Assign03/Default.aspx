@@ -6,18 +6,12 @@
             <asp:BoundField DataField="StudentID" HeaderText="StudentID" />
             <asp:BoundField DataField="FirstMidName" HeaderText="FirstMidName" />
             <asp:BoundField DataField="LastName" HeaderText="LastName" />
-            <asp:BoundField DataField="EnrollmentDate" HeaderText="EnrollmentDate" />
+            <asp:BoundField DataField="EnrollmentDate" HeaderText="EnrollmentDate" DataFormatString="{0:dd-MM-yyyy}" />
             <asp:HyperLinkField DataNavigateUrlFields="StudentID" DataNavigateUrlFormatString="Student.aspx?studentid={0}" Text="Details" />
         </Columns>
     </asp:GridView>
     <div id="AddStudent" runat="server">
          <table>
-             <tr>
-                 <td>StudentID</td>
-                 <td>
-                     <asp:TextBox ID="input_StudentID" runat="server"></asp:TextBox>
-                 </td>
-             </tr>
               <tr>
                  <td>FirstMidName</td>
                  <td>
@@ -33,7 +27,7 @@
              <tr>
                  <td>EnrollmentDate</td>
                  <td>
-                     <asp:Calendar ID="input_EnrollmentDate" runat="server" OnSelectionChanged="input_EnrollmentDate_SelectionChanged"></asp:Calendar>
+                     <asp:TextBox ID="input_EnrollmentDate" runat="server" TextMode="Date"></asp:TextBox>
                  </td>
              </tr>
              <tr>
@@ -51,29 +45,5 @@
              </tr>
          </table>
     </div>
-   <%-- 
-    <h1></h1>
-    <asp:DataList ID ="StudentList" runat="server">
-        <ItemTemplate>
-            <table id="studentTable" runat="server">
-                <tr>
-                    <td>Student ID:</td>
-                    <td><strong><a href="viewstudent.aspx?id=<%#Eval("StudentId") %>"><%#Eval("StudentId") %></a></strong></td>
-                </tr>
-                <tr>
-                    <td>Name:</td>
-                    <td><strong><%#Eval("FirstMidName")%></strong><strong><%#Eval("LastName")%></strong></td>
-                </tr>
-                <tr>
-                    <td>Enrollment Date:</td>
-                    <td><strong><%#Eval("EnrollmentDate") %></strong></td>
-                </tr>
-                
-            </table>
-        </ItemTemplate>
-        <SeparatorTemplate>
-            <hr />
-        </SeparatorTemplate>
-    </asp:DataList>
-    --%>
+  
 </asp:Content>

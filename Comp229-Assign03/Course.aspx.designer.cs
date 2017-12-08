@@ -13,12 +13,21 @@ namespace Comp229_Assign03 {
     public partial class Course {
         
         /// <summary>
-        /// Display_Student control.
+        /// CourseInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView Display_Student;
+        protected global::System.Web.UI.WebControls.DetailsView CourseInfo;
+        
+        /// <summary>
+        /// StudentList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView StudentList;
     }
 }
