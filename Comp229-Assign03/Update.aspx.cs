@@ -23,7 +23,7 @@ namespace Comp229_Assign03
 
             // Initialize connection
             conn = new SqlConnection(connectionString);
-            comm = new SqlCommand("Select FirstMidName,LastName,EnrollmentDate from Students WHERE StudentID = @StudentID", conn);
+            comm = new SqlCommand("Select Students.FirstMidName,Students.LastName,Students.EnrollmentDate from Students WHERE StudentID = @StudentID", conn);
             // pass parameter into command
             comm.Parameters.Add("@StudentID", System.Data.SqlDbType.Int);
             comm.Parameters["@StudentID"].Value = StudentID;
@@ -35,8 +35,7 @@ namespace Comp229_Assign03
                 {
                     update_FirstMidName.Text = reader["FirstMidName"].ToString();
                     update_LastName.Text = reader["LastName"].ToString();
-                    Update_date.Text = reader["EnrollmentDate"].ToString();
-
+                    Update_date.Text = ((DateTime)reader["EnrollmentDate"]).ToString("yyyy-MM-dd");
                 }
                 reader.Close();
             }
@@ -58,7 +57,7 @@ namespace Comp229_Assign03
             comm = new SqlCommand(
             "UPDATE Students SET FirstMidName=@FirstMidName, LastName=@LastName, " +
             "EnrollmentDate=@EnrollmentDate" +
-            "WHERE StudentID=@StudentID", conn);
+            " WHERE StudentID=@StudentID", conn);
             comm.Parameters.Add("@FirstMidName",
             System.Data.SqlDbType.NVarChar, 50);
             comm.Parameters["@FirstMidName"].Value = update_FirstMidName.Text;

@@ -52,7 +52,7 @@ namespace Comp229_Assign03
 
         protected void Button_Update_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Update.aspx");
+            Response.Redirect("Update.aspx?StudentID=" + Request.QueryString["StudentID"]);
         }
 
         protected void Button_Delete_Click(object sender, EventArgs e)

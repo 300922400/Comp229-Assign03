@@ -40,24 +40,6 @@ namespace Comp229_Assign03 {
         protected global::System.Web.UI.WebControls.TextBox Update_date;
         
         /// <summary>
-        /// update_Grade control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox update_Grade;
-        
-        /// <summary>
-        /// Course_List control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Course_List;
-        
-        /// <summary>
         /// Update_button control.
         /// </summary>
         /// <remarks>

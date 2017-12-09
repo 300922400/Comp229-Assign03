@@ -23,27 +23,6 @@
 
              </tr>
              <tr>
-                 <td>Grade</td>
-                 <td>
-                     <asp:TextBox ID="update_Grade" runat="server"></asp:TextBox>
-                 </td>
-             </tr>
-    
-           <tr>
-                 <td>Course </td>
-                 <td>
-                     <asp:DropDownList ID="Course_List" runat="server">
-                         <asp:ListItem>4004	Trigonometry</asp:ListItem>
-                         <asp:ListItem>4005	Literature</asp:ListItem>
-                         <asp:ListItem>4002	Macroeconomics</asp:ListItem>
-                         <asp:ListItem>4003	Calculus</asp:ListItem>
-                         <asp:ListItem>4006	Chemistry</asp:ListItem>
-                         <asp:ListItem>4007	Microeconomics</asp:ListItem>
-                     </asp:DropDownList>
-                 </td>
-
-             </tr>
-             <tr>
                  <td></td>
                  <td>
                      <asp:Button ID="Update_button" runat="server" Text="UPDATE" OnClick="Update_button_Click"  />
