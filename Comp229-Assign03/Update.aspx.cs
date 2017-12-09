@@ -13,11 +13,8 @@ namespace Comp229_Assign03
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (IsPostBack) return;
 
-        }
-
-        protected void Update_button_Click(object sender, EventArgs e)
-        {
             int StudentID = Convert.ToInt32(Request.QueryString["StudentID"]);
             SqlConnection conn;
             SqlCommand comm;
@@ -26,15 +23,15 @@ namespace Comp229_Assign03
 
             // Initialize connection
             conn = new SqlConnection(connectionString);
-            comm = new SqlCommand("Select FirstMidName,LastName,EnrollmentDate WHERE StudentID = @StudentID", conn);
+            comm = new SqlCommand("Select FirstMidName,LastName,EnrollmentDate from Students WHERE StudentID = @StudentID", conn);
             // pass parameter into command
             comm.Parameters.Add("@StudentID", System.Data.SqlDbType.Int);
             comm.Parameters["@StudentID"].Value = StudentID;
             try
             {
                 conn.Open();
-                reader = comm.ExecuteReader();//invalid studentID,firstmidname,lastname
-                if(reader.Read())
+                reader = comm.ExecuteReader();
+                if (reader.Read())
                 {
                     update_FirstMidName.Text = reader["FirstMidName"].ToString();
                     update_LastName.Text = reader["LastName"].ToString();
@@ -42,12 +39,48 @@ namespace Comp229_Assign03
 
                 }
                 reader.Close();
-                Update_button.Enabled = true;
             }
-                finally
+            finally
             {
                 conn.Close();
             }
         }
+
+        protected void Update_button_Click(object sender, EventArgs e)
+        {
+            int StudentID = Convert.ToInt32(Request.QueryString["StudentID"]);
+            SqlConnection conn;
+            SqlCommand comm;
+            string connectionString =
+            ConfigurationManager.ConnectionStrings[
+            "Students"].ConnectionString;
+            conn = new SqlConnection(connectionString);
+            comm = new SqlCommand(
+            "UPDATE Students SET FirstMidName=@FirstMidName, LastName=@LastName, " +
+            "EnrollmentDate=@EnrollmentDate" +
+            "WHERE StudentID=@StudentID", conn);
+            comm.Parameters.Add("@FirstMidName",
+            System.Data.SqlDbType.NVarChar, 50);
+            comm.Parameters["@FirstMidName"].Value = update_FirstMidName.Text;
+            comm.Parameters.Add("@LastName",
+            System.Data.SqlDbType.NVarChar, 50);
+            comm.Parameters["@LastName"].Value = update_LastName.Text;
+            comm.Parameters.Add("@EnrollmentDate",
+            System.Data.SqlDbType.Date);
+            comm.Parameters["@EnrollmentDate"].Value = Convert.ToDateTime(Update_date.Text);
+            
+            try
+            {
+                conn.Open();
+                comm.ExecuteNonQuery();
+            }
+          
+            finally
+            {
+                conn.Close();
+            }
+           
+        }
+
     }
 }

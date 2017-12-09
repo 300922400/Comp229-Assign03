@@ -16,7 +16,9 @@ namespace Comp229_Assign03
             int courseID = Convert.ToInt32(Request.QueryString["CourseID"]);
             SqlConnection conn;
             SqlCommand comm_students;
-            SqlDataReader reader;
+            SqlCommand comm_course;
+            SqlDataReader reader1;
+            SqlDataReader reader2;
             // read the connection string from Web.config
             string connectionString = ConfigurationManager.ConnectionStrings["Students"].ConnectionString;
 
@@ -25,19 +27,27 @@ namespace Comp229_Assign03
             //create command
             comm_students = new SqlCommand("SELECT Students.StudentID,Students.FirstMidName,Students.LastName FROM Enrollments JOIN Students on Enrollments.StudentID = Students.StudentID WHERE Enrollments.CourseID = @CourseID", conn);
             // add parameter into command
+            comm_course = new SqlCommand("SELECT CourseID,Title FROM Courses WHERE CourseID = @CourseID", conn);
             comm_students.Parameters.Add("@CourseID", System.Data.SqlDbType.Int);
             comm_students.Parameters["@CourseID"].Value = courseID;
+            comm_course.Parameters.Add("@CourseID", System.Data.SqlDbType.Int);
+            comm_course.Parameters["@CourseID"].Value = courseID;
             try
             {
                 //open connection
                 conn.Open();
                 //execute the command
-                reader = comm_students.ExecuteReader();
+                reader1 = comm_students.ExecuteReader();
                 // bind the reader to DataList
-                StudentList.DataSource = reader;
+                StudentList.DataSource = reader1;
                 StudentList.DataBind();
+                reader1.Close();
+
+                reader2 = comm_course.ExecuteReader();
+                CourseInfo.DataSource = reader2;
+                CourseInfo.DataBind();
                 //Close the reader
-                reader.Close();
+                reader2.Close();
 
             }
             finally
@@ -47,14 +57,42 @@ namespace Comp229_Assign03
             }
         }
 
-        protected void StudentList_SelectedIndexChanged(object sender, EventArgs e)
+       
+        protected void AddStudentToCourse_Click(object sender, EventArgs e)
+        {
+            int StudentID = Convert.ToInt32((studentId.SelectedValue));
+            int courseID = Convert.ToInt32(Request.QueryString["CourseID"]);
+            SqlConnection conn;
+            SqlCommand comm_addStudent;
+            string connectionString = ConfigurationManager.ConnectionStrings[
+            "Students"].ConnectionString;
+            conn = new SqlConnection(connectionString);
+            comm_addStudent = new SqlCommand("Insert into Enrollments (StudentID,CourseID) values " +
+             "(@StudentID,@CourseID)" , conn);
+            comm_addStudent.Parameters.Add("StudentID", System.Data.SqlDbType.Int);
+            comm_addStudent.Parameters["StudentID"].Value = StudentID;
+            comm_addStudent.Parameters.Add("CourseID", System.Data.SqlDbType.Int);
+            comm_addStudent.Parameters["CourseID"].Value = courseID;
+            try
+            {
+                conn.Open();
+                comm_addStudent.ExecuteNonQuery(); ;
+                Response.Redirect("Course.aspx");
+            }
+
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        protected void StudentList_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int selectedRowIndex;
-            selectedRowIndex = StudentList.SelectedIndex;
-            int StudentID = (int)StudentList.DataKeys[selectedRowIndex].Value;
+            selectedRowIndex = e.RowIndex;
+            int StudentID = (int)StudentList.DataKeys[selectedRowIndex].Values["StudentID"];
             SqlConnection conn;
             SqlCommand comm_removal;
-            SqlDataReader reader;
             string connectionString = ConfigurationManager.ConnectionStrings[
             "Students"].ConnectionString;
             conn = new SqlConnection(connectionString);
@@ -65,42 +103,7 @@ namespace Comp229_Assign03
             try
             {
                 conn.Open();
-                reader = comm_removal.ExecuteReader();
                 comm_removal.ExecuteNonQuery();
-               // StudentList.DataSource = reader;
-                //populated with an array of keys coz this is GridView
-                //StudentList.DataKeyNames = new string[] { "StudentID" };
-                //StudentList.DataBind();
-            }
-
-            finally
-            {
-                conn.Close();
-            }
-        }
-
-        protected void AddStudentToCourse_Click(object sender, EventArgs e)
-        {
-            int StudentID = Convert.ToInt32(AddStudent_Course.ToString());
-            int courseID = Convert.ToInt32(Request.QueryString["CourseID"]);
-            SqlConnection conn;
-            SqlCommand comm_addStudent;
-            SqlDataReader reader;
-            string connectionString = ConfigurationManager.ConnectionStrings[
-            "Students"].ConnectionString;
-            conn = new SqlConnection(connectionString);
-            comm_addStudent = new SqlCommand("Insert into Enrollments (StudentID,CourseID) values " +
-             "(@StudentID,@CourseID)", conn);
-            comm_addStudent.Parameters.Add("StudentID", System.Data.SqlDbType.Int);
-            comm_addStudent.Parameters["StudentID"].Value = StudentID;
-            comm_addStudent.Parameters.Add("CourseID", System.Data.SqlDbType.Int);
-            comm_addStudent.Parameters["CourseID"].Value = courseID;
-            try
-            {
-                conn.Open();
-                reader = comm_addStudent.ExecuteReader();
-                comm_addStudent.ExecuteNonQuery();
-                
             }
 
             finally

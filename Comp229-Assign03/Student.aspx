@@ -18,7 +18,7 @@
         </asp:SqlDataSource>
       <asp:DetailsView  runat="server" ID="Student_Info" AutoGenerateRows="False">
           <Fields>
-              <asp:BoundField DataField="CourseID" HeaderText="CourseID" ReadOnly="True" />
+              <asp:HyperLinkField DataNavigateUrlFields="CourseID" DataNavigateUrlFormatString="Course.aspx?courseid={0}" DataTextField="CourseID" HeaderText="CourseID" Text="CourseID" />
               <asp:BoundField DataField="Title" HeaderText="Course Title" ReadOnly="True" />
               <asp:BoundField DataField="Grade" HeaderText="Grade" ReadOnly="True" />
           </Fields>
