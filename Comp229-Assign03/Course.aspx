@@ -2,7 +2,9 @@
 <%--display all student enroll course
 add or remove students from course--%>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <h1>Course Information</h1>
     <asp:DetailsView id="CourseInfo" runat="server"></asp:DetailsView>
+    <h1>Student List</h1>
     <asp:GridView ID="StudentList" DataKeyNames="StudentID" runat="server" OnRowDeleting="StudentList_RowDeleting" >
         <Columns>
             <asp:ButtonField ButtonType="Button" CommandName="Delete" Text="Remove" />

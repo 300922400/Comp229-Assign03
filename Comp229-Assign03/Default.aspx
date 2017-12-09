@@ -1,6 +1,10 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Comp229_Assign03._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="jumbotron">
+     <img src="Image/XXsEphhJ.gif" />
+    </div>
+    <h1>STUDENT LIST</h1>
     <asp:GridView ID ="StudentList" runat="server" AutoGenerateColumns="False">
         <Columns>
             <asp:BoundField DataField="StudentID" HeaderText="StudentID" />
@@ -10,6 +14,8 @@
             <asp:HyperLinkField DataNavigateUrlFields="StudentID" DataNavigateUrlFormatString="Student.aspx?studentid={0}" Text="Details" />
         </Columns>
     </asp:GridView>
+    <br />
+    <h2>PLEASE KINDLY INPUT THE NEW STUDENT:</h2>
     <div id="AddStudent" runat="server">
          <table>
               <tr>

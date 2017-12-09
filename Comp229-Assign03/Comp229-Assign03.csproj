@@ -154,6 +154,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Image\38946170-Makeup-brushes-and-crushed-eyeshadows-on-dark-background-Stock-Photo.jpg" />
+    <Content Include="Image\banner_beauty1.jpg" />
+    <Content Include="Image\Boru8PW6.gif" />
+    <Content Include="Image\chpEJrOO.gif" />
+    <Content Include="Image\HWKxOLYQ.gif" />
+    <Content Include="Image\logo.png" />
+    <Content Include="Image\seamless-floral-background-vector.jpg" />
+    <Content Include="Image\surveyimage.PNG" />
+    <Content Include="Image\XXsEphhJ.gif" />
     <Content Include="Student.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />

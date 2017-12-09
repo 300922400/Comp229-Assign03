@@ -67,7 +67,8 @@ namespace Comp229_Assign03
             comm.Parameters.Add("@EnrollmentDate",
             System.Data.SqlDbType.Date);
             comm.Parameters["@EnrollmentDate"].Value = Convert.ToDateTime(Update_date.Text);
-            
+            comm.Parameters.Add("@StudentID", System.Data.SqlDbType.Int);
+            comm.Parameters["@StudentID"].Value = StudentID;
             try
             {
                 conn.Open();

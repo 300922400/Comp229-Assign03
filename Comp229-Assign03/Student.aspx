@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Student" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Student.aspx.cs" Inherits="Comp229_Assign03.Student" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2> Student Page </h2>
+    <h1> Student Page </h1>
         <asp:DetailsView runat="server" ID="Student_Detail" AutoGenerateRows="false" DataSourceID="StudentDataSource">
             <Fields>
                 <asp:BoundField DataField="StudentID" HeaderText="StudentID" InsertVisible="False" ReadOnly="True" SortExpression="StudentID" />
@@ -16,6 +16,8 @@
                 <asp:QueryStringParameter Name="StudentID" QueryStringField="studentid" Type="Int32" />
             </SelectParameters>
         </asp:SqlDataSource>
+    <br />
+    <h2>The Student's Record:</h2>
       <asp:DetailsView  runat="server" ID="Student_Info" AutoGenerateRows="False">
           <Fields>
               <asp:HyperLinkField DataNavigateUrlFields="CourseID" DataNavigateUrlFormatString="Course.aspx?courseid={0}" DataTextField="CourseID" HeaderText="CourseID" Text="CourseID" />
@@ -23,7 +25,7 @@
               <asp:BoundField DataField="Grade" HeaderText="Grade" ReadOnly="True" />
           </Fields>
       </asp:DetailsView>  
-    
+    <br />
     <table runat="server">
         <tr>
             <td>
